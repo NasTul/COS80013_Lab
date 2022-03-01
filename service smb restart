@@ -1,0 +1,3 @@
+Login as root password: security
+service smb restart
+smbclient //server/share/
