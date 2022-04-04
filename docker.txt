@@ -1,0 +1,31 @@
+
+docker image tag webgoat/goatandwolf gcr.io/xxxx/goatandwolf 
+
+docker push gcr.io/xxxx/goatandwolf
+
+
+gcloud container clusters get-credentials  autopilot-cluster-1 --zone australia-southeast1
+
+
+
+kubectl run mygoat --env TZ=Europe/Amsterdam --image=gcr.io/xxxx/goatandwolf
+
+
+kubectl create deployment mygoat --image=gcr.io/xxxx/goatandwolf
+
+
+kubectl expose deployment.apps/mygoat --type="LoadBalancer" --port=8080,9090
+
+
+kubectl expose pod/mygoat --type="LoadBalancer" --port=8080,9090 
+
+kubectl expose deployment.apps/mygoat --name=nginx --type="LoadBalancer" --target-port=8888 --port=80
+
+kubectl get service nginx --watch
+#look to see which external ip is assigned
+
+
+
+kubectl get service
+
+kubectl delete svc 
